@@ -1,4 +1,8 @@
-﻿namespace SimpleCalculator
+﻿using System;
+using System.CodeDom.Compiler;
+using System.Windows.Forms.VisualStyles;
+
+namespace SimpleCalculator
 {
     partial class Calculator
     {
@@ -61,7 +65,6 @@
             this.calcDisplay.TabIndex = 0;
             this.calcDisplay.Text = "0";
             this.calcDisplay.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.calcDisplay.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // button_NegPos
             // 
@@ -72,6 +75,7 @@
             this.button_NegPos.TabIndex = 1;
             this.button_NegPos.Text = "+/-";
             this.button_NegPos.UseVisualStyleBackColor = true;
+            this.button_NegPos.Click += new System.EventHandler(this.negPosClick);
             // 
             // button_Equal
             // 
@@ -82,6 +86,7 @@
             this.button_Equal.TabIndex = 2;
             this.button_Equal.Text = "=";
             this.button_Equal.UseVisualStyleBackColor = true;
+            this.button_Equal.Click += new System.EventHandler(this.equalsClick);
             // 
             // button_Period
             // 
@@ -92,6 +97,7 @@
             this.button_Period.TabIndex = 3;
             this.button_Period.Text = ".";
             this.button_Period.UseVisualStyleBackColor = true;
+            this.button_Period.Click += new System.EventHandler(this.periodEntryClick);
             // 
             // button_Zero
             // 
@@ -102,7 +108,7 @@
             this.button_Zero.TabIndex = 4;
             this.button_Zero.Text = "0";
             this.button_Zero.UseVisualStyleBackColor = true;
-            this.button_Zero.Click += new System.EventHandler(this.button4_Click);
+            this.button_Zero.Click += new System.EventHandler(this.numberEntryClick);
             // 
             // button_Two
             // 
@@ -113,6 +119,7 @@
             this.button_Two.TabIndex = 8;
             this.button_Two.Text = "2";
             this.button_Two.UseVisualStyleBackColor = true;
+            this.button_Two.Click += new System.EventHandler(this.numberEntryClick);
             // 
             // button_Three
             // 
@@ -121,8 +128,9 @@
             this.button_Three.Name = "button_Three";
             this.button_Three.Size = new System.Drawing.Size(70, 70);
             this.button_Three.TabIndex = 7;
-            this.button_Three.Text = "2";
+            this.button_Three.Text = "3";
             this.button_Three.UseVisualStyleBackColor = true;
+            this.button_Three.Click += new System.EventHandler(this.numberEntryClick);
             // 
             // button_Plus
             // 
@@ -133,6 +141,7 @@
             this.button_Plus.TabIndex = 6;
             this.button_Plus.Text = "+";
             this.button_Plus.UseVisualStyleBackColor = true;
+            this.button_Plus.Click += new System.EventHandler(this.operatorClick);
             // 
             // button_One
             // 
@@ -143,6 +152,7 @@
             this.button_One.TabIndex = 5;
             this.button_One.Text = "1";
             this.button_One.UseVisualStyleBackColor = true;
+            this.button_One.Click += new System.EventHandler(this.numberEntryClick);
             // 
             // button_Five
             // 
@@ -153,6 +163,7 @@
             this.button_Five.TabIndex = 12;
             this.button_Five.Text = "5";
             this.button_Five.UseVisualStyleBackColor = true;
+            this.button_Five.Click += new System.EventHandler(this.numberEntryClick);
             // 
             // button_Six
             // 
@@ -163,6 +174,7 @@
             this.button_Six.TabIndex = 11;
             this.button_Six.Text = "6";
             this.button_Six.UseVisualStyleBackColor = true;
+            this.button_Six.Click += new System.EventHandler(this.numberEntryClick);
             // 
             // button_Minus
             // 
@@ -173,6 +185,7 @@
             this.button_Minus.TabIndex = 10;
             this.button_Minus.Text = "-";
             this.button_Minus.UseVisualStyleBackColor = true;
+            this.button_Minus.Click += new System.EventHandler(this.operatorClick);
             // 
             // button_Four
             // 
@@ -183,6 +196,7 @@
             this.button_Four.TabIndex = 9;
             this.button_Four.Text = "4";
             this.button_Four.UseVisualStyleBackColor = true;
+            this.button_Four.Click += new System.EventHandler(this.numberEntryClick);
             // 
             // button_Eight
             // 
@@ -193,6 +207,7 @@
             this.button_Eight.TabIndex = 16;
             this.button_Eight.Text = "8";
             this.button_Eight.UseVisualStyleBackColor = true;
+            this.button_Eight.Click += new System.EventHandler(this.numberEntryClick);
             // 
             // button_Nine
             // 
@@ -203,6 +218,7 @@
             this.button_Nine.TabIndex = 15;
             this.button_Nine.Text = "9";
             this.button_Nine.UseVisualStyleBackColor = true;
+            this.button_Nine.Click += new System.EventHandler(this.numberEntryClick);
             // 
             // button_Multiply
             // 
@@ -213,6 +229,7 @@
             this.button_Multiply.TabIndex = 14;
             this.button_Multiply.Text = "X";
             this.button_Multiply.UseVisualStyleBackColor = true;
+            this.button_Multiply.Click += new System.EventHandler(this.operatorClick);
             // 
             // button_Seven
             // 
@@ -223,16 +240,18 @@
             this.button_Seven.TabIndex = 13;
             this.button_Seven.Text = "7";
             this.button_Seven.UseVisualStyleBackColor = true;
+            this.button_Seven.Click += new System.EventHandler(this.numberEntryClick);
             // 
             // button_C
             // 
-            this.button_C.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_C.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_C.Location = new System.Drawing.Point(91, 75);
             this.button_C.Name = "button_C";
             this.button_C.Size = new System.Drawing.Size(70, 70);
             this.button_C.TabIndex = 20;
             this.button_C.Text = "C";
             this.button_C.UseVisualStyleBackColor = true;
+            this.button_C.Click += new System.EventHandler(this.clearClick);
             // 
             // button_Back
             // 
@@ -243,6 +262,7 @@
             this.button_Back.TabIndex = 19;
             this.button_Back.Text = "⌫";
             this.button_Back.UseVisualStyleBackColor = true;
+            this.button_Back.Click += new System.EventHandler(this.backspaceClick);
             // 
             // button_Divide
             // 
@@ -253,16 +273,18 @@
             this.button_Divide.TabIndex = 18;
             this.button_Divide.Text = "/";
             this.button_Divide.UseVisualStyleBackColor = true;
+            this.button_Divide.Click += new System.EventHandler(this.operatorClick);
             // 
             // button_CE
             // 
-            this.button_CE.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_CE.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_CE.Location = new System.Drawing.Point(15, 75);
             this.button_CE.Name = "button_CE";
             this.button_CE.Size = new System.Drawing.Size(70, 70);
             this.button_CE.TabIndex = 17;
             this.button_CE.Text = "CE";
             this.button_CE.UseVisualStyleBackColor = true;
+            this.button_CE.Click += new System.EventHandler(this.clearEntryClick);
             // 
             // Calculator
             // 
@@ -293,7 +315,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Calculator";
             this.Text = "Calculator";
-            this.Load += new System.EventHandler(this.Calculator_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
